@@ -10,5 +10,5 @@ before_install:
   - gem update --system
   - gem --version
 script:
-  - ./bin/webpack
+  - rake assets:precompile
   - bundle exec  rspec spec
