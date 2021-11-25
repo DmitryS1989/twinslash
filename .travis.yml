@@ -1,7 +1,10 @@
 language: ruby
 rvm:
  - 3.0.1
+ - 2.6.5
  - jruby
+services:
+  - postgresql
 before_script:
   - cp config/database.yml.travis config/database.yml
 before_install:
