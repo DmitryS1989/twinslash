@@ -1,9 +1,6 @@
 language: ruby
 rvm:
  - 3.0.1
-language: node_js
-node_js:
-  - 17
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
