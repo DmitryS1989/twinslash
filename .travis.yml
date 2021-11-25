@@ -10,4 +10,5 @@ before_install:
   - gem update --system
   - gem --version
 script:
+  - bundle exec rails webpacker:install
   - bundle exec  rspec spec
