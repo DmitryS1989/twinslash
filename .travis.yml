@@ -4,7 +4,6 @@ rvm:
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
-  - rails webpacker:install
 services:
   - postgresql
 before_install:
