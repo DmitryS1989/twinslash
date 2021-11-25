@@ -1,9 +1,8 @@
-env:
-  - Node.js ">=10.17.0"
 language: ruby
 rvm:
  - 3.0.1
 before_script:
+  - npm install -g n stable
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 services:
