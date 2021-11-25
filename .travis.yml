@@ -1,12 +1,11 @@
 language: ruby
 rvm:
  - 3.0.1
- - 2.6.5
- - jruby
-services:
-  - postgresql
 before_script:
   - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database db_test;' -U postgres
+services:
+  - postgresql
 before_install:
   - gem update --system
   - gem --version
