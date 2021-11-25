@@ -18,7 +18,7 @@ cache:
 
 install:
   - bundle install
-  - nvm install node
+  - nvm install 12
   - node -v
   - npm i -g yarn
   - yarn
