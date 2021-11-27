@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   get 'home' => 'static_pages#home'
   get 'about' => 'static_pages#about'
   root 'static_pages#home'

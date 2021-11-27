@@ -23,6 +23,7 @@ gem 'faker'
 gem 'jbuilder', '~> 2.7'
 gem 'slim'
 gem 'travis'
+gem 'letter_opener'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
