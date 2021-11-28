@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'StaticPagesControllers', type: :request do
+RSpec.describe 'StaticPages home and about pages returned 200', type: :request do
   def self.should_get_static_page(*links)
     links.each do |a|
       it "#{a} have status 200" do
