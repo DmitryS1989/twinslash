@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def self.from_omniauth(auth)
-    name_split = auth.info.name.split(' ')
     user = User.where(email: auth.info.email).first
     user ||= User.create!(name: auth.extra.raw_info.name,
                           email: auth.info.email,
