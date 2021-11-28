@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users
   get 'home' => 'static_pages#home'
   get 'about' => 'static_pages#about'
   root 'static_pages#home'
