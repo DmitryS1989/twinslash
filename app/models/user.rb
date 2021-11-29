@@ -12,7 +12,8 @@ class User < ApplicationRecord
     user = User.where(email: auth.info.email).first
     user ||= User.create!(name: auth.info.name,
                           email: auth.info.email,
-                          password: Devise.friendly_token[0, 20])
+                          password: Devise.friendly_token[0, 20],
+                          confirmed_at: Time.zone.now)
     user
   end
 end
