@@ -19,6 +19,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'devise'
+gem 'factory_bot_rails'
 gem 'faker'
 gem 'jbuilder', '~> 2.7'
 gem 'letter_opener'

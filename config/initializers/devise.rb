@@ -297,7 +297,6 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :APP_ID),
                   Rails.application.credentials.dig(:facebook, :APP_SECRET), {}
-                 
 
   # ==> Turbolinks configuration
   # If your app is using Turbolinks, Turbolinks::Controller needs to be included to make redirection work correctly:
