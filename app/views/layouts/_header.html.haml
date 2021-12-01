@@ -1,0 +1,28 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    %a.navbar-brand{:href => "/"} Navbar
+    %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDropdown", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarNavDropdown.collapse.navbar-collapse
+      %ul.navbar-nav
+        %li.nav-item
+          %a.nav-link{:href => "/home"} Home
+        - unless user_signed_in?
+          %li.nav-item
+            %a.nav-link{:href => "/users/sign_up"} Signup
+          %li.nav-item
+            %a.nav-link{:href => "/users/sign_in"} Signin
+        %li.nav-item
+          %a.nav-link{:href => "/about"} About
+        - if user_signed_in? && current_user.admin_role?
+          %li.nav-item
+            %a.nav-link{:href => "/admin/users"} Users Edit
+        - if user_signed_in?
+          %li.nav-item.dropdown
+            %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+              Settings
+            %ul.dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
+              %li
+                %a.dropdown-item{:href => "/users/edit"} Edit
+              %li
+                %a.dropdown-item{"data-method" => "delete", :href => "/users/sign_out"} Signout

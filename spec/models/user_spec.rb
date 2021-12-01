@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       user.name = ' '
       expect(user.valid?).to eql(false)
     end
-    it 'user has default role' do
+    it 'user has default role after create' do
       expect(user.role).to eql('user')
     end
   end

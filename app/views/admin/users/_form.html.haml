@@ -1,0 +1,17 @@
+= form_with model: [:admin, user] do |f|
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :email
+    .col-sm-10
+      = f.email_field :email, class: 'form-control form-control-lg'
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :name
+    .col-sm-10
+      = f.text_field :name, class: 'form-control form-control-lg'
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :role
+    .col-sm-10
+      = f.select :role, user_roles, {}, class: 'form-select form-select-lg'
+  = f.submit "Update" , class: 'btn btn-primary btn-lg'

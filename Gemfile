@@ -27,6 +27,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'slim'
 gem 'travis'
+gem 'haml-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
