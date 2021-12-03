@@ -1,0 +1,10 @@
+= form_for(@ad) do |f|
+  .field
+    = f.text_area :content, autocomplete: "content"
+  
+  %p
+    = button_to "Update", ad_path(@ad), data: { confirm: "Are you sure?" }, |
+      method: :patch                                                                |
+  %p
+    = button_to "Delete", ad_path(@ad), data: { confirm: "Are you sure?" }, |
+      method: :delete                                                               |

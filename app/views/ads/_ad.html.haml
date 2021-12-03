@@ -1,0 +1,8 @@
+%p.card-header= ad.user.name
+.card-body
+  %h5.card-title= ad.title
+  %p.card-text= ad.content
+  %p.card-text
+    Posted at #{ad.created_at} .
+  - if current_user == ad.user
+    = link_to 'Edit', edit_ad_path(ad), class: 'btn btn-secondary'

@@ -1,3 +1,4 @@
+ 
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container-fluid
     %a.navbar-brand{:href => "/"} Navbar
@@ -17,6 +18,9 @@
         - if user_signed_in? && current_user.admin_role?
           %li.nav-item
             %a.nav-link{:href => "/admin/users"} Users Edit
+        -if user_signed_in? 
+          %li.nav-item
+            %a.nav-link{:href => "/ads"} My Ads
         - if user_signed_in?
           %li.nav-item.dropdown
             %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}

@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   devise :omniauthable, omniauth_providers: [:facebook]
   validates :name, presence: true
+  has_many :ads, dependent: :destroy
 
   def self.from_omniauth(auth)
     user = User.where(email: auth.info.email).first
