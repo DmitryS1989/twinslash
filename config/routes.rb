@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'home' => 'static_pages#home'
   get 'about' => 'static_pages#about'
   root 'static_pages#home'
-  resources :ads
+  resources :ads do
+    member do
+      delete :delete_file
+    end
+  end
   namespace :admin do
     resources :users
   end

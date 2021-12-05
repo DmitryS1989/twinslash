@@ -1,8 +1,14 @@
-%p.card-header= ad.user.name
+.card{:style => "width: 50rem;"}
 .card-body
-  %h5.card-title= ad.title
-  %p.card-text= ad.content
-  %p.card-text
-    Posted at #{ad.created_at} .
+  %h5.card-title= "#{ad.user.name}"
+  %p.card-text= "Title: #{ad.title}"
+  %p.card-text= "Content: #{ad.content}"
+  - if ad.images.any?
+    - ad.images.each do |file|
+      = image_tag file.variant(resize: "100x100",format: :jpeg)
+  %p Posted at #{ad.created_at} .
+  -# %p.card-text
+  -#   Status: #{ad.status}   
+%p     
   - if current_user == ad.user
     = link_to 'Edit', edit_ad_path(ad), class: 'btn btn-secondary'

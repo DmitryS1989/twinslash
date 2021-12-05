@@ -3,10 +3,8 @@
 require 'rails_helper'
 RSpec.describe Ad, type: :model do
   before(:each) do
-    user = FactoryBot.create(:user)
-    @ad = user.ads.build(content: 'Lorem ipsum', title: 'eeeeee')
+    @ad = FactoryBot.create(:ad)
   end
-
   it 'Validate ad' do
     expect(@ad.valid?).to eql(true)
   end
@@ -23,4 +21,4 @@ RSpec.describe Ad, type: :model do
     @ad.user_id = ' '
     expect(@ad.valid?).to eql(false)
   end
-end
+  # 

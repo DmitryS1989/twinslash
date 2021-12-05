@@ -1,10 +1,29 @@
-= form_for(@ad) do |f|
-  .field
-    = f.text_area :content, autocomplete: "content"
-  
+= form_with model: @ad do |f|
+  - if @ad.images.any?
+    %strong Attachments:
+    %ul
+      - @ad.images.each do |file|
+        %li
+          = image_tag file.variant(resize: "100x100", format: :jpeg)
+          = link_to 'Remove', delete_file_ad_url(file.id), method: :delete, data: { confirm: 'Are you sure?' }
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :title, autocomplete: "content"
+    .col-sm-10
+      = f.text_field :title, class: 'form-control'
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :content, autocomplete: "content"
+    .col-sm-10
+      = f.text_field  :content , class: 'form-control'
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :images
+    .col-sm-10
+      = f.file_field :images, multiple: true
   %p
     = button_to "Update", ad_path(@ad), data: { confirm: "Are you sure?" }, |
-      method: :patch                                                                |
+      method: :patch,   class: 'btn btn-primary'                                                                    |
   %p
     = button_to "Delete", ad_path(@ad), data: { confirm: "Are you sure?" }, |
-      method: :delete                                                               |
+      method: :delete,   class: 'btn btn-primary'                                                            |

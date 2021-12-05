@@ -35,6 +35,12 @@ class AdsController < ApplicationController
     end
   end
 
+  def delete_file
+    file = ActiveStorage::Attachment.find(params[:id])
+    file.purge
+    redirect_back fallback_location: root_path
+  end
+
   def destroy
     @ad = Ad.find(params[:id])
     @ad.destroy
@@ -45,11 +51,11 @@ class AdsController < ApplicationController
   private
 
   def ad_create_params
-    params.require(:ad).permit(:title, :content)
+    params.require(:ad).permit(:title, :content, images: [])
   end
 
   def ad_update_params
-    params.require(:ad).permit(:title, :content)
+    params.require(:ad).permit(:title, :content, images: [])
   end
 
   def correct_user
