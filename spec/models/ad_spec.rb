@@ -21,4 +21,5 @@ RSpec.describe Ad, type: :model do
     @ad.user_id = ' '
     expect(@ad.valid?).to eql(false)
   end
+end
   # 
