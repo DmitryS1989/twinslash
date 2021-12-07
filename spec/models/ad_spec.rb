@@ -5,21 +5,36 @@ RSpec.describe Ad, type: :model do
   before(:each) do
     @ad = FactoryBot.create(:ad)
   end
-  it 'Validate ad' do
-    expect(@ad.valid?).to eql(true)
+
+  it 'allow ad' do
+    expect(@ad).to be_valid
   end
 
-  it "doesn't validate an ad with an empty content" do
+  it 'do not allow ad with empty content' do
     @ad.content = ' '
-    expect(@ad.valid?).to eql(false)
+    expect(@ad).to_not be_valid
   end
-  it "doesn't validate an ad with an empty title" do
+
+  it 'do not allow ad with an empty title' do
     @ad.title = ' '
-    expect(@ad.valid?).to eql(false)
+    expect(@ad).to_not be_valid
   end
-  it "doesn't validate an ad with an empty user_id" do
+
+  it 'do not allow ad with empty tags' do
+    @ad.tags = []
+    expect(@ad).to_not be_valid
+  end
+
+  it 'allow ad with 2 tags' do
+    @ad.tags << FactoryBot.create(:tag, title: 'moto')
+  end
+
+  it 'do not allow ad with an empty user_id' do
     @ad.user_id = ' '
-    expect(@ad.valid?).to eql(false)
+    expect(@ad).to_not be_valid
+  end
+
+  it ' ad has image ' do
+    expect(@ad.images).to be_truthy
   end
 end
-  # 

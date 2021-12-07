@@ -10,8 +10,8 @@ import "channels"
 import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap"
 import "stylesheets/style"
+import '../scripts/select'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-

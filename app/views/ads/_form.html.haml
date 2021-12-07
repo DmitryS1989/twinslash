@@ -1,4 +1,11 @@
-= form_with model: ad do |f|
+= form_with model: @ad do |f|
+  - if @ad.images.any?
+    %strong Attachments:
+    %ul
+      - @ad.images.each do |file|
+        %li
+          = image_tag file.variant(resize: "100x100", format: :jpeg)
+          = link_to 'Remove', delete_file_ad_url(file.id), method: :delete, data: { confirm: 'Are you sure?' }
   .mb-3.row
     .col-sm-2.col-form-label
       = f.label :title
@@ -14,4 +21,11 @@
       = f.label :images
     .col-sm-10
       = f.file_field :images, multiple: true
-  = f.submit "Create", class: 'btn btn-primary'
+  .mb-3.row
+    .col-sm-2.col-form-label
+      = f.label :tags
+    .col-sm-10
+      = f.collection_select :tag_ids, @ad.tags, :id, :title, {}, multiple: true, |
+        class: 'js-multiple-select', data: {'ajax-url': '/api/tags'}                  |
+  = f.submit "Submit", class: 'btn btn-primary'
+    

@@ -5,9 +5,10 @@ FactoryBot.define do
     association :user
     title { 'MyString' }
     content { 'MyText' }
-    after(:build) do |culture|
-      culture.images.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'soy.jpeg')),
-                            filename: 'soy.jpeg', content_type: 'image/jpeg')
-    end
+    tags { [FactoryBot.create(:tag)] }
+    # after(:build) do |culture|
+    #   culture.images.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'soy.jpeg')),
+    #                         filename: 'soy.jpeg', content_type: 'image/jpeg')
+    # end
   end
 end

@@ -29,12 +29,12 @@ gem 'omniauth-rails_csrf_protection'
 gem 'slim'
 gem 'travis'
 # Reduces boot times through caching; required in config/boot.rb
+gem 'aws-sdk-s3'
+gem 'blueprinter'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'file_validators'
 gem 'image_processing'
 gem 'mini_magick'
-gem "aws-sdk-s3"
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

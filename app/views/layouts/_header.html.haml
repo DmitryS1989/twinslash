@@ -7,7 +7,7 @@
     #navbarNavDropdown.collapse.navbar-collapse
       %ul.navbar-nav
         %li.nav-item
-          %a.nav-link{:href => "/home"} Home
+          %a.nav-link{:href => "/ads"} Home
         - unless user_signed_in?
           %li.nav-item
             %a.nav-link{:href => "/users/sign_up"} Signup
@@ -20,7 +20,7 @@
             %a.nav-link{:href => "/admin/users"} Users Edit
         -if user_signed_in? 
           %li.nav-item
-            %a.nav-link{:href => "/ads"} My Ads
+            %a.nav-link{:href => "/my/ads"} My Ads
         - if user_signed_in?
           %li.nav-item.dropdown
             %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}

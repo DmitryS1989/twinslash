@@ -8,11 +8,11 @@ RSpec.describe User, type: :model do
                     email: 'test@test.com',
                     password: 'password')
 
-    it 'Validate user with a name' do
+    it 'Allow user with a name' do
       assert user.valid?
     end
 
-    it "doesn't validate a user with an empty name" do
+    it 'do not allow a user with an empty name' do
       user.name = ' '
       expect(user.valid?).to eql(false)
     end

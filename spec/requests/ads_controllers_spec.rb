@@ -12,7 +12,7 @@ RSpec.describe 'test ads controller', type: :request do
         end
       end
     end
-    should_get_static_page '/ads/new', '/ads'
+    should_get_static_page '/ads/new'
   end
 
   context 'user is  logged in as user ' do
