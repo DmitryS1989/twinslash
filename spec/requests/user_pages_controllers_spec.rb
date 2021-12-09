@@ -34,14 +34,4 @@ RSpec.describe 'Test user controller', type: :request do
       expect(response.status).to eq(302)
     end
   end
-  context 'when the user is  logged in as admin ' do
-    include Devise::Test::IntegrationHelpers
-    before(:each) do
-      sign_in FactoryBot.create(:user, role: :admin)
-    end
-    it 'Trying to get /users/edit' do
-      get '/admin/users'
-      expect(response.status).to eq(200)
-    end
-  end
 end

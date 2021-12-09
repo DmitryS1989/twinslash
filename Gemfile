@@ -29,6 +29,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'slim'
 gem 'travis'
 # Reduces boot times through caching; required in config/boot.rb
+gem 'activeadmin'
 gem 'aws-sdk-s3'
 gem 'blueprinter'
 gem 'bootsnap', '>= 1.4.4', require: false
