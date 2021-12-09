@@ -4,6 +4,7 @@ class AdsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit update destroy]
   before_action :correct_user, only: %i[destroy edit update]
   before_action :fetch_tags, only: %i[new edit]
+  before_action :check_state, only: %i[update edit]
 
   def index
     params[:tag_ids]
@@ -42,7 +43,7 @@ class AdsController < ApplicationController
       render 'edit'
     end
   end
-
+  
   def delete_file
     file = ActiveStorage::Attachment.find(params[:id])
     file.purge
@@ -58,8 +59,14 @@ class AdsController < ApplicationController
 
   private
 
+  def check_state
+    @ad = Ad.find(params[:id])
+    redirect_back fallback_location: 
+             root_path unless %w[draft archival].include?(@ad.state)
+  end
+
   def ad_params
-    params.require(:ad).permit(:title, :content, images: [], tag_ids: [])
+    params.require(:ad).permit(:title, :state, :content, images: [], tag_ids: [])
   end
 
   def correct_user
@@ -70,4 +77,5 @@ class AdsController < ApplicationController
   def fetch_tags
     @tags = Tag.all
   end
+
 end

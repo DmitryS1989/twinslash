@@ -6,7 +6,7 @@ ActiveAdmin.register Ad do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :title, :content, :user_id
+   permit_params :title, :content, :user_id, :status
   #
   # or
   #

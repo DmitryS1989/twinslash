@@ -1,6 +1,3 @@
-.mb-3.row
-  .col-sm-2.col-form-label
-    = f.label :tags
-  .col-sm-10
-    = f.collection_select :tag_ids, question.tags, :id, :title, {}, multiple: true, |
-      class: 'js-multiple-select', data: {'ajax-url': '/api/tags'}                  |
+.field
+  = f.label :status
+  = f.select :status,  Advert.statuses.keys, autocomplete: "status"

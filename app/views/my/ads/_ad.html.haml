@@ -3,6 +3,7 @@
   %h5.card-title= "#{ad.user.name}"
   %p.card-text= "Title: #{ad.title}"
   %p.card-text= "Content: #{ad.content}"
+  %p.card-text= "Status: #{ad.state}"
   =render ad.tags
   %p
     - if ad.images.any?

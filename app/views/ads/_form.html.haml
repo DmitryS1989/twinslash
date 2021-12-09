@@ -26,6 +26,6 @@
       = f.label :tags
     .col-sm-10
       = f.collection_select :tag_ids, @ad.tags, :id, :title, {}, multiple: true, |
-        class: 'js-multiple-select', data: {'ajax-url': '/api/tags'}                  |
+        class: 'js-multiple-select', data: {'ajax-url': '/api/tags'}                |
   = f.submit "Submit", class: 'btn btn-primary'
     
