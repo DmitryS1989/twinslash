@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 require 'faker'
-99.times do |n|
+99.times do |_n|
   name = Faker::Name.name
   email =  Faker::Internet.email
   password = 'password'

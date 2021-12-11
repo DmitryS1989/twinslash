@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Ad do
-  actions :all, except: [:create, :new]
+  actions :all, except: %i[create new]
   scope :moderating
   member_action :approve, method: :patch do
     resource.approve!
@@ -25,7 +25,7 @@ ActiveAdmin.register Ad do
     actions defaults: false do |ad|
       link_to 'Reject', reject_admin_ad_path(ad), method: :patch if ad.moderating?
     end
-    actions 
+    actions
   end
 
   # See permitted parameters documentation:

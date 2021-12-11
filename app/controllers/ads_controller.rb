@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AdsController < ApplicationController
-  before_action :authenticate_user!,except: %i[show index]
+  before_action :authenticate_user!, except: %i[show index]
   before_action :correct_user, only: %i[destroy edit update]
   before_action :fetch_tags, only: %i[new edit]
   before_action :check_state, only: %i[update edit]
@@ -43,12 +43,13 @@ class AdsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def delete_file
     file = ActiveStorage::Attachment.find(params[:id])
     file.purge
     redirect_back fallback_location: root_path
   end
+
   def send_to_moderate
     ad = Ad.find(params[:id])
     ad.moderating!
@@ -78,8 +79,10 @@ class AdsController < ApplicationController
 
   def check_state
     @ad = Ad.find(params[:id])
-    redirect_back fallback_location: 
-             root_path unless %w[draft archival].include?(@ad.state)
+    unless %w[draft archival].include?(@ad.state)
+      redirect_back fallback_location:
+               root_path
+    end
   end
 
   def ad_params

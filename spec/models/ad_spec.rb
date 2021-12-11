@@ -36,5 +36,4 @@ RSpec.describe Ad, type: :model do
   it ' ad has status ' do
     expect(@ad.state).to be_truthy
   end
-  
 end
