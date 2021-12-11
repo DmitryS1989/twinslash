@@ -6,7 +6,7 @@ class Ad < ApplicationRecord
   has_many :ad_tags, dependent: :destroy
   has_many :tags, through: :ad_tags
   has_many_attached :images
-  enum state: { draft: 0, on_moderating: 1,
+  enum state: { draft: 0, moderating: 1,
                 rejected: 2, approved: 3, published: 4, archival: 5 }
   validates :user_id, presence: true
   validates :content, presence: true
@@ -17,18 +17,18 @@ class Ad < ApplicationRecord
 
   aasm column: :state, enum: true do
     state :draft, initial: true
-    state :on_moderating, :rejected, :approved, :published, :archival
+    state :moderating, :rejected, :approved, :published, :archival
 
     event :moderating do
-      transitions from: :draft, to: :on_moderating
+      transitions from: :draft, to: :moderating
     end
 
     event :approve do
-      transitions from: :new, to: :approved
+      transitions from: :moderating, to: :approved
     end
 
     event :reject do
-      transitions from: :new, to: :rejected
+      transitions from: :moderating, to: :rejected
     end
 
     event :publish do
@@ -36,6 +36,12 @@ class Ad < ApplicationRecord
     end
     event :archiv do
       transitions from: :published, to: :archival
+    end
+    event :refresh do
+      transitions from: :archival, to: :published
+    end
+    event :correct do
+      transitions from: :rejected, to: :draft
     end
   end
 

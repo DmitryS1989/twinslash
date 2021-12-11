@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AdsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit update destroy]
+  before_action :authenticate_user!,except: %i[show index]
   before_action :correct_user, only: %i[destroy edit update]
   before_action :fetch_tags, only: %i[new edit]
   before_action :check_state, only: %i[update edit]
@@ -49,6 +49,23 @@ class AdsController < ApplicationController
     file.purge
     redirect_back fallback_location: root_path
   end
+  def send_to_moderate
+    ad = Ad.find(params[:id])
+    ad.moderating!
+    redirect_back fallback_location: root_path
+  end
+
+  def refresh
+    ad = Ad.find(params[:id])
+    ad.refresh!
+    redirect_back fallback_location: root_path
+  end
+
+  def correct
+    ad = Ad.find(params[:id])
+    ad.correct!
+    redirect_back fallback_location: root_path
+  end
 
   def destroy
     @ad = Ad.find(params[:id])
@@ -77,5 +94,4 @@ class AdsController < ApplicationController
   def fetch_tags
     @tags = Tag.all
   end
-
 end

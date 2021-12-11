@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
   resources :ads do
     member do
+      patch  :refresh
+      patch  :send_to_moderate
+      patch  :correct
       delete :delete_file
     end
   end

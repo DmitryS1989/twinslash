@@ -14,6 +14,15 @@
   -#   Status: #{ad.status}   
 %p     
   - if current_user == ad.user
-    = link_to 'Edit', edit_ad_path(ad), class: 'btn btn-secondary'
+    -if ad.draft?
+      = link_to 'Edit', edit_ad_path(ad), class: 'btn btn-secondary'
+      = link_to 'Send for moderation', send_to_moderate_ad_path(ad.id), class: 'btn btn-secondary',
+          method: :patch
+    -if ad.archival?
+      = link_to 'Refresh', refresh_ad_path(ad.id), class: 'btn btn-secondary',
+          method: :patch
+    -if ad.rejected?
+      = link_to 'Refresh', correct_ad_path(ad.id), class: 'btn btn-secondary',
+          method: :patch
     = link_to 'Delete', ad_path(ad), class: 'btn btn-danger',
         data: {method: :delete, confirm: 'Are you sure?'}
