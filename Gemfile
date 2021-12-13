@@ -38,6 +38,8 @@ gem 'file_validators'
 gem 'image_processing'
 gem 'kaminari'
 gem 'mini_magick'
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
