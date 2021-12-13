@@ -9,7 +9,7 @@ class AdsController < ApplicationController
   def index
     params[:tag_ids]
     @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
-    @ads = Ad.all_by_tags(@tags)
+    @ads = Ad.all_by_tags(@tags).page params[:page]
   end
 
   def show

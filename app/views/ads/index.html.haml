@@ -1,3 +1,4 @@
+
 %section.mb-5
   %h2= t '.search_by_tags'
   = form_with url: ads_path, method: :get do |f|
@@ -6,5 +7,6 @@
         multiple: true, required: true,                                                         |
         class: 'js-multiple-select', data: {'ajax-url': '/api/tags'}                            |
     = f.submit 'Sumbit', class: 'btn btn-primary'
-
+= paginate @ads
 = render @ads
+= paginate @ads

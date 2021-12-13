@@ -1,7 +1,7 @@
 .card{:style => "width: 50rem;"}
 .card-body
   %h5.card-title= "#{ad.user.name}"
-  %p.card-text= "Title: #{ad.title}"
+  %p.h6.card-title= "Title: #{ad.title}"
   %p.card-text= "Content: #{ad.content}"
   - if current_user == ad.user
     %p.card-text= "Status: #{ad.state}"
@@ -9,7 +9,7 @@
   %p
     - if ad.images.any?
       - ad.images.each do |file|
-        = image_tag file.variant(resize: "100x100",format: :jpeg)
+        = image_tag file
   %p Posted at #{ad.created_at} . 
 %p     
   - if current_user == ad.user

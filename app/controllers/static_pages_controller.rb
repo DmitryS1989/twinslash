@@ -2,7 +2,7 @@
 
 class StaticPagesController < ApplicationController
   def home
-    @ads = Ad.order(created_at: :desc)
+    @ads = Ad.where(state: :published).order(created_at: :desc).page params[:page]
   end
 
   def about; end

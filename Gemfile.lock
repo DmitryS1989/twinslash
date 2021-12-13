@@ -422,6 +422,7 @@ DEPENDENCIES
   haml-rails
   image_processing
   jbuilder (~> 2.7)
+  kaminari
   letter_opener
   listen (~> 3.3)
   mini_magick

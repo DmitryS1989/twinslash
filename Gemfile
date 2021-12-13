@@ -36,6 +36,7 @@ gem 'blueprinter'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'file_validators'
 gem 'image_processing'
+gem 'kaminari'
 gem 'mini_magick'
 
 group :development, :test do

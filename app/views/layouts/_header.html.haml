@@ -1,13 +1,11 @@
  
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container-fluid
-    %a.navbar-brand{:href => "/"} Navbar
+    %a.navbar-brand{:href => "/"} Ads
     %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDropdown", "data-bs-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse
       %ul.navbar-nav
-        %li.nav-item
-          %a.nav-link{:href => "/ads"} Home
         - unless user_signed_in?
           %li.nav-item
             %a.nav-link{:href => "/users/sign_up"} Signup

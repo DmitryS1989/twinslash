@@ -52,6 +52,6 @@ class Ad < ApplicationRecord
           else
             ads.includes(:ad_tags, :tags)
           end
-    ads.order(created_at: :desc)
+    ads.where(state: :published).order(created_at: :desc)
   }
 end
