@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# module
 module Users
+  # class
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
       @user = User.from_omniauth(request.env['omniauth.auth'])
@@ -9,8 +11,9 @@ module Users
         sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
         set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
       else
-        session['devise.facebook_data'] = request.env['omniauth.auth'].except(:extra) # Removing extra as it can overflow some session stores
-        redirect_to home__url
+        # Removing extra as it can overflow some session stores
+        session['devise.facebook_data'] = request.env['omniauth.auth'].except(:extra)
+        redirect_to root_path
       end
     end
 

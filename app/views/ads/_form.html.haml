@@ -3,9 +3,10 @@
     %strong Attachments:
     %ul
       - @ad.images.each do |file|
-        %li
-          = image_tag file.variant(resize: "100x100", format: :jpeg)
-          = link_to 'Remove', delete_file_ad_url(file.id), method: :delete, data: { confirm: 'Are you sure?' }
+        -unless file.id.nil?
+          %li
+            = image_tag file.variant(resize: "100x100", format: :jpeg)
+            = link_to 'Remove', delete_file_ad_url(file.id), method: :delete, data: { confirm: 'Are you sure?' }
   .mb-3.row
     .col-sm-2.col-form-label
       = f.label :title
@@ -14,8 +15,8 @@
   .mb-3.row
     .col-sm-2.col-form-label
       = f.label :content
-    .col-sm-10
-      = f.text_field  :content , class: 'form-control'
+    .col-lg-10
+      = f.text_area :content, class: 'form-control'
   .mb-3.row
     .col-sm-2.col-form-label
       = f.label :images

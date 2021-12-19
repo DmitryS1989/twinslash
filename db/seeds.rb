@@ -15,7 +15,6 @@ end
   title = Faker::Hipster.word
   Tag.create title: title
 end
-users = User.order(:created_at).take(6)
 100.times do
   img = rand(1..5)
   tags = Tag.find_by_id(rand(1..Tag.all.size))

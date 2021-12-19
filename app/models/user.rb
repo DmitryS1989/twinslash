@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class
 class User < ApplicationRecord
   enum role: { user: 0, admin_user: 1 }, _suffix: :role
   # Include default devise modules. Others available are:

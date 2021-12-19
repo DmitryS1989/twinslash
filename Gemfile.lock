@@ -422,43 +422,43 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  aasm
-  activeadmin
-  aws-sdk-s3
-  blueprinter
+  aasm (~> 5.2)
+  activeadmin (~> 2.9)
+  aws-sdk-s3 (~> 1.109)
+  blueprinter (~> 0.25.3)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-  devise
-  factory_bot_rails
-  faker
-  file_validators
-  haml-rails
-  image_processing
+  devise (>= 4.8)
+  factory_bot_rails (~> 6.2.0)
+  faker (~> 2.19.0)
+  file_validators (~> 3.0)
+  haml-rails (~> 2.0)
+  image_processing (~> 1.12)
   jbuilder (~> 2.7)
-  kaminari
-  letter_opener
+  kaminari (~> 1.2)
+  letter_opener (~> 1.4)
   listen (~> 3.3)
-  mini_magick
-  omniauth-facebook
-  omniauth-rails_csrf_protection
+  mini_magick (~> 4.11)
+  omniauth-facebook (~> 9.0)
+  omniauth-rails_csrf_protection (~> 1.0)
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
-  rails-controller-testing
-  rspec-rails
+  rails-controller-testing (>= 1.0.5)
+  rspec-rails (>= 5.0.2)
   sass-rails (>= 6)
-  selenium-webdriver
-  sidekiq
-  sidekiq-cron
+  selenium-webdriver (>= 4.1.0)
+  sidekiq (~> 6.3)
+  sidekiq-cron (~> 1.2)
   slim
-  spring
-  travis
+  spring (~> 3.0)
+  travis (~> 1.8.13)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
-  webdrivers
+  webdrivers (>= 5.0.0)
   webpacker (~> 5.0)
 
 RUBY VERSION

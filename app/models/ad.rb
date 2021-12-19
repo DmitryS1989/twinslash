@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class
 class Ad < ApplicationRecord
   include AASM
   belongs_to :user
@@ -9,8 +10,8 @@ class Ad < ApplicationRecord
   enum state: { draft: 0, moderating: 1,
                 rejected: 2, approved: 3, published: 4, archival: 5 }
   validates :user_id, presence: true
-  validates :content, presence: true
   validates :title, presence: true
+  validates :content, presence: true
   validates :tags, presence: true
   validates :images, file_size: { less_than_or_equal_to: 1000.kilobytes },
                      file_content_type: { allow: ['image/jpeg', 'image/png'] }
@@ -45,6 +46,10 @@ class Ad < ApplicationRecord
     end
   end
 
+  scope :newest_first, -> { order(created_at: :desc) }
+
+  scope :state_is_puplished, -> { where(state: :published) }
+
   scope :all_by_tags, lambda { |tags|
     ads = includes(:user)
     ads = if tags
@@ -52,6 +57,6 @@ class Ad < ApplicationRecord
           else
             ads.includes(:ad_tags, :tags)
           end
-    ads.where(state: :published).order(created_at: :desc)
+    ads.state_is_puplished.newest_first
   }
 end

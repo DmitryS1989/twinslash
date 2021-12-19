@@ -1,3 +1,5 @@
 = link_to 'Create new ad', new_ad_path, class: 'btn btn-secondary'
 %h5 My Ads:
+= paginate @ads
 = render @ads
+= paginate @ads

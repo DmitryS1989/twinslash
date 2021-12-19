@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class
 class AdsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
   before_action :correct_user, only: %i[destroy edit update]
@@ -7,13 +8,12 @@ class AdsController < ApplicationController
   before_action :check_state, only: %i[update edit]
 
   def index
-    params[:tag_ids]
     @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
     @ads = Ad.all_by_tags(@tags).page params[:page]
   end
 
   def show
-    @ads = Ad.where(user_id: current_user.id).order(created_at: :desc)
+    @ads = Ad.all
   end
 
   def new
@@ -23,10 +23,10 @@ class AdsController < ApplicationController
   def create
     @ad = current_user.ads.build ad_params
     if @ad.save
-      redirect_to '/my/ads'
-      flash[:success] = 'Ad createdted'
+      redirect_to my_ads_path
     else
-      render '/ads/new'
+      flash.now[:warning] = @ad.errors.full_messages[0]
+      render new_ad_path
     end
   end
 
@@ -38,9 +38,10 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:id])
     if @ad.update(ad_params)
       flash[:success] = 'Ad updated'
-      redirect_to '/ads'
+      redirect_to my_ads_path
     else
       render 'edit'
+      flash[:warning] = @ad.errors.full_messages[0]
     end
   end
 
@@ -72,17 +73,17 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:id])
     @ad.destroy
     flash[:success] = 'Ad deleted'
-    redirect_to '/ads'
+    redirect_to my_ads_path
   end
 
   private
 
   def check_state
     @ad = Ad.find(params[:id])
-    unless %w[draft archival].include?(@ad.state)
-      redirect_back fallback_location:
+    return if %w[draft archival].include?(@ad.state)
+
+    redirect_back fallback_location:
                root_path
-    end
   end
 
   def ad_params

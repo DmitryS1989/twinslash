@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# module
 module Api
+  # class
   class TagsController < ApplicationController
     def index
       tags = Tag.arel_table

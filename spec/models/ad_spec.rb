@@ -33,7 +33,8 @@ RSpec.describe Ad, type: :model do
     @ad.user_id = ' '
     expect(@ad).to_not be_valid
   end
-  it ' ad has status ' do
+
+  it 'ad has status ' do
     expect(@ad.state).to be_truthy
   end
 end

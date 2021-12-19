@@ -3,12 +3,8 @@
 FactoryBot.define do
   factory :ad do
     association :user
-    title { 'MyString' }
-    content { 'MyText' }
+    title { Faker::Hipster.sentence(word_count: 3) }
+    content { Faker::Hipster.paragraph(sentence_count: 2) }
     tags { [FactoryBot.create(:tag)] }
-    # after(:build) do |culture|
-    #   culture.images.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'soy.jpeg')),
-    #                         filename: 'soy.jpeg', content_type: 'image/jpeg')
-    # end
   end
 end

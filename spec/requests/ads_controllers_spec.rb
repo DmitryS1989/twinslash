@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe 'test ads controller', type: :request do
   context 'user is not logged in ' do
     def self.should_get_static_page(*links)
-      links.each do |a|
-        it "#{a} have status 302" do
-          get a
+      links.each do |page|
+        it "#{page} have status 302" do
+          get page
           expect(response.status).to eq(302)
         end
       end
@@ -15,7 +15,7 @@ RSpec.describe 'test ads controller', type: :request do
     should_get_static_page '/ads/new'
   end
 
-  context 'user is  logged in as user ' do
+  context 'user is logged in as user ' do
     include Devise::Test::IntegrationHelpers
     before(:each) do
       sign_in FactoryBot.create(:user)

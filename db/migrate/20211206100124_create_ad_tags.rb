@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class
 class CreateAdTags < ActiveRecord::Migration[6.1]
   def change
     create_table :ad_tags do |t|
