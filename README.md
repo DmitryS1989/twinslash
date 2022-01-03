@@ -10,4 +10,3 @@ user: login: movs1989@mail.ru pass: 123456
 ( Java script в процессе познания :) )
 23-) https://github.com/DmitryS1989/twinslash/blob/main/app/views/ads/_form.html.haml#L37 - строка обьявления цикла должна содержать в себе только условия цикла и итератор, - f = files[i]; присвоения должны быть в теле цикла, а не в условиях
 ( Java script в процессе познания :)
-27-) https://github.com/DmitryS1989/twinslash/blob/main/app/models/ad.rb#L51 - тут какая то каша joins + preload + includes, не понятно почему не что-то одно, и зачем все вместе.

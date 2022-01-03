@@ -5,12 +5,32 @@ ActiveAdmin.register Ad do
   remove_filter :images_blobs, :images_attachments
   actions :all, except: %i[create new delete update]
   scope :moderating
+
   member_action :approve, method: :patch do
     resource.approve!
     redirect_back fallback_location: root_path
   end
+
   member_action :reject, method: :patch do
     resource.reject!
+    redirect_back fallback_location: root_path
+  end
+
+  batch_action :destroy, false
+
+  batch_action :approve, confirm: 'Are you sure??' do |ids|
+    ids.each do |id|
+      ad = Ad.find_by_id(id)
+      ad.approve! if ad.moderating?
+    end
+    redirect_back fallback_location: root_path
+  end
+
+  batch_action :reject, confirm: 'Are you sure??' do |ids|
+    ids.each do |id|
+      ad = Ad.find_by_id(id)
+      ad.reject! if ad.moderating?
+    end
     redirect_back fallback_location: root_path
   end
 

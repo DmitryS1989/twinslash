@@ -9,7 +9,7 @@
   %p
     - if ad.images_get.any?
       - ad.images_get.each do |file|
-        = image_tag file
+        = image_tag file, size: '150x150'
   %p Posted at #{ad.created_at} . 
 %p     
   - if current_user == ad.user
