@@ -20,8 +20,8 @@ end
   tags = Tag.find_by_id(rand(1..Tag.all.size))
   title = Faker::Hipster.sentence(word_count: 3)
   user = User.find_by_id(rand(1..User.all.size)).id
-  content = Faker::Hipster.paragraph(sentence_count: 2)
-  ad = Ad.new(title: title, content: content, user_id: user, state: :moderating)
+  body = Faker::Hipster.paragraph(sentence_count: 2)
+  ad = Ad.new(title: title, body: body, user_id: user, state: :moderating)
   rand(1..3).times do
     ad.images.attach(io: File.open(Rails.root.join("app/assets/images/#{img}.jpeg")),
                      filename: "#{img}.jpeg")

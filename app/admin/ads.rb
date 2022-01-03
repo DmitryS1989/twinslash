@@ -16,7 +16,16 @@ ActiveAdmin.register Ad do
     selectable_column
     id_column
     column :title
-    column :content
+    column :body
+    column :images do |ad|
+      div do
+        ad.images.each do |img|
+          div do
+            image_tag url_for(img), size: "75x75"
+          end
+        end
+      end
+    end
     column :state
     column :created_at
     actions defaults: false do |ad|
@@ -27,5 +36,5 @@ ActiveAdmin.register Ad do
     end
   end
 
-  permit_params :title, :content, :user_id, :state
+  permit_params :title, :body, :user_id, :state, images: []
 end

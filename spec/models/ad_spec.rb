@@ -11,7 +11,7 @@ RSpec.describe Ad, type: :model do
   end
 
   it 'do not allow ad with empty content' do
-    @ad.content = ' '
+    @ad.body = ' '
     expect(@ad).to_not be_valid
   end
 
