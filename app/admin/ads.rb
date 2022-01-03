@@ -16,7 +16,7 @@ ActiveAdmin.register Ad do
     selectable_column
     id_column
     column :title
-    column :body
+    column :body_ad
     column :images do |ad|
       div do
         ad.images.each do |img|
@@ -36,5 +36,5 @@ ActiveAdmin.register Ad do
     end
   end
 
-  permit_params :title, :body, :user_id, :state, images: []
+  permit_params :title, :body_ad, :user_id, :state, images: []
 end

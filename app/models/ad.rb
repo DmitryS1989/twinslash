@@ -11,7 +11,7 @@ class Ad < ApplicationRecord
                 rejected: 2, approved: 3, published: 4, archival: 5 }
   validates :user_id, presence: true
   validates :title, presence: true
-  validates :body, presence: true
+  validates :body_ad, presence: true
   validates :tags, presence: true
   validates :images, file_size: { less_than_or_equal_to: 1000.kilobytes },
                      file_content_type: { allow: ['image/jpeg', 'image/png'] }
