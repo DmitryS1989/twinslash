@@ -48,15 +48,17 @@ class Ad < ApplicationRecord
 
   scope :newest_first, -> { order(created_at: :desc) }
 
-  scope :state_is_puplished, -> { where(state: :published) }
+  scope :state_is_published, -> { where(state: :published) }
+
+  scope :includes_all, -> { includes([:user], [:ad_tags], [:tags]) }
 
   scope :all_by_tags, lambda { |tags|
-    ads = includes(:user)
-    ads = if tags
-            ads.joins(:tags).where(tags: tags).preload(:tags)
-          else
-            ads.includes(:ad_tags, :tags)
-          end
-    ads.state_is_puplished.newest_first
+    ads = Ad.includes_all
+    ads = ads.joins(:tags).where(tags: tags) if tags
+    ads.state_is_published.newest_first
   }
+
+  def images_get
+    images.includes([:blob])
+  end
 end

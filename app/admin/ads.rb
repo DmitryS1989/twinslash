@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Ad do
+  preserve_default_filters!
+  remove_filter :images_blobs, :images_attachments
   actions :all, except: %i[create new delete update]
   scope :moderating
   member_action :approve, method: :patch do
@@ -19,9 +21,9 @@ ActiveAdmin.register Ad do
     column :body_ad
     column :images do |ad|
       div do
-        ad.images.each do |img|
+        ad.images_get.each do |img|
           div do
-            image_tag url_for(img), size: "75x75"
+            image_tag url_for(img), size: '75x75'
           end
         end
       end
@@ -36,5 +38,5 @@ ActiveAdmin.register Ad do
     end
   end
 
-  permit_params :title, :body_ad, :user_id, :state, images: []
+  permit_params :state
 end

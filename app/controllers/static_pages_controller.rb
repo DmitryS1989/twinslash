@@ -3,7 +3,7 @@
 # class
 class StaticPagesController < ApplicationController
   def home
-    @ads = Ad.state_is_puplished.newest_first.page params[:page]
+    @ads = Ad.includes_all.state_is_published.newest_first.page params[:page]
   end
 
   def about; end

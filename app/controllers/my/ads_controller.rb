@@ -6,7 +6,7 @@ module My
   class AdsController < ApplicationController
     before_action :authenticate_user!
     def index
-      @ads = Ad.where(user_id: current_user.id).newest_first.page params[:page]
+      @ads = Ad.includes_all.where(user_id: current_user.id).newest_first.page params[:page]
     end
   end
 end
