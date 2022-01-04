@@ -2,20 +2,26 @@
 
 require 'rails_helper'
 RSpec.describe Tag, type: :model do
+  let(:tag) { FactoryBot.create(:tag) }
+  let(:tag_dup) { FactoryBot.build(:tag) }
+
   before(:each) do
-    @tag = FactoryBot.create(:tag)
+    tag.valid?
   end
 
-  it 'allow tag' do
-    expect(@tag).to be_valid
+  it 'tag correct' do
+    expect(tag.errors).to be_empty
   end
 
-  it 'do not allow tag with an empty title' do
-    @tag.title = ''
-    expect(@tag).to_not be_valid
+  context 'tag with an empty title' do
+    let(:tag) { FactoryBot.build(:tag, title: '') }
+    it 'incorrect' do
+      expect(tag.errors.full_messages).to include("Title can't be blank")
+    end
   end
 
-  it 'Rise error Title has already been taken' do
-    expect { FactoryBot.create(:tag) }.to raise_error(ActiveRecord::RecordInvalid)
+  it 'creating a tag with the same title' do
+    tag_dup.valid?
+    expect(tag_dup.errors.full_messages).to include('Title has already been taken')
   end
 end

@@ -2,21 +2,21 @@
 
 require 'rails_helper'
 RSpec.describe 'Test user controller', type: :request do
-  context 'when the user is not logged in ' do
-    def self.should_get_user_signup_signin_pages(*links)
-      links.each do |a|
-        it "#{a} have status 200" do
-          get a
-          expect(response.status).to eq(200)
-        end
-      end
+  context 'get /users/sign_in' do
+    it_behaves_like 'unauthenticated user status ok' do
+      before { get '/users/sign_in' }
     end
+  end
 
-    should_get_user_signup_signin_pages '/users/sign_up', '/users/sign_in'
+  context 'get /users/sign_up' do
+    it_behaves_like 'unauthenticated user status ok' do
+      before { get '/users/sign_up' }
+    end
+  end
 
-    it 'Trying to get /users/edit' do
-      get '/users/edit'
-      expect(response.status).to eq(302)
+  context 'get /user/edit' do
+    it_behaves_like 'unauthenticated user redirected' do
+      before { get '/users/edit' }
     end
   end
 

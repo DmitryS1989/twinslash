@@ -2,39 +2,45 @@
 
 require 'rails_helper'
 RSpec.describe Ad, type: :model do
+  let(:ad) { FactoryBot.create(:ad) }
+
   before(:each) do
-    @ad = FactoryBot.create(:ad)
+    ad.valid?
   end
 
-  it 'allow ad' do
-    expect(@ad).to be_valid
+  it 'add correct' do
+    expect(ad.errors.full_messages).to be_empty
   end
 
-  it 'do not allow ad with empty content' do
-    @ad.body_ad = ' '
-    expect(@ad).to_not be_valid
+  context 'ad with an empty body ad' do
+    let(:ad) { FactoryBot.build(:ad, body_ad: ' ') }
+    it 'incorrect' do
+      expect(ad.errors.full_messages).to include("Body ad can't be blank")
+    end
   end
 
-  it 'do not allow ad with an empty title' do
-    @ad.title = ' '
-    expect(@ad).to_not be_valid
+  context 'ad with an empty title' do
+    let(:ad) { FactoryBot.build(:ad, title: ' ') }
+    it 'incorrect' do
+      expect(ad.errors.full_messages).to include("Title can't be blank")
+    end
   end
 
-  it 'do not allow ad with empty tags' do
-    @ad.tags = []
-    expect(@ad).to_not be_valid
+  context 'ad with an empty tags' do
+    let(:ad) { FactoryBot.build(:ad, tags: []) }
+    it 'incorrect' do
+      expect(ad.errors.full_messages).to include("Tags can't be blank")
+    end
   end
 
-  it 'allow ad with 2 tags' do
-    @ad.tags << FactoryBot.create(:tag, title: 'moto')
-  end
-
-  it 'do not allow ad with an empty user_id' do
-    @ad.user_id = ' '
-    expect(@ad).to_not be_valid
+  context 'ad with an empty user_id' do
+    let(:ad) { FactoryBot.build(:ad, user_id: '') }
+    it 'incorrect' do
+      expect(ad.errors.full_messages).to include("User can't be blank")
+    end
   end
 
   it 'ad has status ' do
-    expect(@ad.state).to be_truthy
+    expect(ad.state).to eq('draft')
   end
 end

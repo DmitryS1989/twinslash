@@ -68,4 +68,5 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end

@@ -3,20 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'user atributes' do
-    user = FactoryBot.build(:user)
+  let(:user) { FactoryBot.build(:user) }
 
-    it 'Allow user with a name' do
-      assert user.valid?
-    end
+  before(:each) do
+    user.valid?
+  end
 
-    it 'do not allow a user with an empty name' do
-      user.name = ' '
-      expect(user.valid?).to eql(false)
-    end
+  it 'Allow user with a name' do
+    expect(user.errors.full_messages).to be_empty
+  end
 
-    it 'user has default role after create' do
-      expect(user.role).to eql('user')
+  context 'a user with an empty name' do
+    let(:user) { FactoryBot.build(:user, name: ' ') }
+    it 'incorrect' do
+      expect(user.errors.full_messages).to include("Name can't be blank")
     end
+  end
+
+  it 'user has default role after create' do
+    expect(user.role).to eql('user')
   end
 end
