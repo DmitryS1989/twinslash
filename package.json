@@ -15,9 +15,9 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3"
+    "webpack-dev-server": "^4.7.2"
   },
   "engines": {
-    "node": ">=10.17.0"
+    "node": "12.22.8"
   }
 }
