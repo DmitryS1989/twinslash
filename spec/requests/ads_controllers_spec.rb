@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'test ads controller', type: :request do
+  let(:ad) { FactoryBot.create(:ad) }
+  let(:ad_second) { FactoryBot.build(:ad_second) }
   context 'get /my/ads' do
     it_behaves_like 'unauthenticated user redirected' do
       before { get '/my/ads' }
@@ -29,6 +31,16 @@ RSpec.describe 'test ads controller', type: :request do
     it 'Trying to get /ads/new' do
       get '/ads/new'
       expect(response.status).to eq(200)
+    end
+
+    it 'Trying to get /ads/new' do
+      get '/my/ads'
+      expect(response.status).to eq(200)
+    end
+
+    it 'Create new ad' do
+      delete "/ads/#{ad.id}"
+      puts response.body
     end
   end
 end

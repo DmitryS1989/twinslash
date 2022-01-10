@@ -52,8 +52,8 @@ class AdsController < ApplicationController
   end
 
   def send_to_moderate
-    ad = Ad.find(params[:id])
-    ad.moderating!
+    @ad = Ad.find(params[:id])
+    @ad.moderating!
     redirect_back fallback_location: root_path
   end
 

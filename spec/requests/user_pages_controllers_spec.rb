@@ -29,9 +29,5 @@ RSpec.describe 'Test user controller', type: :request do
       get '/users/edit'
       expect(response.status).to eq(200)
     end
-    it 'Trying to get /users/edit' do
-      get '/admin/users'
-      expect(response.status).to eq(302)
-    end
   end
 end
