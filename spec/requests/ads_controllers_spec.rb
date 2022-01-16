@@ -37,10 +37,5 @@ RSpec.describe 'test ads controller', type: :request do
       get '/my/ads'
       expect(response.status).to eq(200)
     end
-
-    it 'Create new ad' do
-      delete "/ads/#{ad.id}"
-      puts response.body
-    end
   end
 end

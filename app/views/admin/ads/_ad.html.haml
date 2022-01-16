@@ -1,0 +1,17 @@
+.card
+.card-body
+  %h5.card-title= "#{ad.user.name}"
+  %p.card-text= "Title: #{ad.title}"
+  %p.card-text= "Body: #{ad.body_ad}"
+  %p.card-text= "Status: #{ad.state}"
+  =render ad.tags
+  %p
+    - if ad.images.any?
+      - ad.images.each do |file|
+        = image_tag file.variant(resize: "100x100",format: :jpeg)
+  %p Posted at #{ad.created_at} .
+%p
+  = link_to 'Approve', approve_ad_path(ad.id), class: 'btn btn-secondary',
+          method: :patch
+  = link_to 'Reject', reject_ad_path(ad.id), class: 'btn btn-secondary',
+          method: :patch

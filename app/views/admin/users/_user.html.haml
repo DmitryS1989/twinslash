@@ -1,0 +1,13 @@
+%tbody
+  %tr
+    %td= user.name
+    %td= user.email
+    %td= user.role
+    - if user.user?
+      %td= link_to 'Make Admin', make_administrator_user_path(user.id), class: 'btn btn-secondary',
+          method: :patch
+    - if user.admin_user?
+      %td= link_to 'Make User', make_user_user_path(user.id), class: 'btn btn-secondary',
+          method: :patch
+    %td= link_to 'Delete User', user_path(user.id), class: 'btn btn-danger',
+        method: :delete

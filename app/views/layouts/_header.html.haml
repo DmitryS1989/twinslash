@@ -14,9 +14,16 @@
         %li.nav-item
           %a.nav-link{:href => "/about"} About
         
-        -if user_signed_in? 
+        -if user_signed_in? && current_user.user?
           %li.nav-item
             %a.nav-link{:href => "/my/ads"} My Ads
+        -if user_signed_in? && current_user.admin_user?
+          %li.nav-item
+            %a.nav-link{:href => "/admin/ads"} Ads
+          %li.nav-item
+            %a.nav-link{:href => "/admin/users"} Users
+          %li.nav-item
+            %a.nav-link{:href => "/admin/tags"} Tags
         - if user_signed_in?
           %li.nav-item.dropdown
             %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}

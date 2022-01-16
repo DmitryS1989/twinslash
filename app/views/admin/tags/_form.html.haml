@@ -1,0 +1,10 @@
+
+= form_with(model: tag) do |form|
+  .field
+    .col-sm-2.col-form-label
+      = form.label :title
+    .col-sm-10
+      = form.text_area :title, class: 'form-control'
+  %p
+    .actions
+      = form.submit 'Create Tag', class: 'btn btn-primary'

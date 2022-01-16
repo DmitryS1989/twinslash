@@ -1,0 +1,18 @@
+Create new Tag
+#new_message
+  = render partial: "form", locals: { tag: Tag.new }
+= paginate @tags
+%table.table.table-striped
+  %thead
+    %tr
+      %th Id
+      %th Title
+      %th{:colspan => "3"}
+  - @tags.each do |tag|
+    %tbody
+      %tr
+        %td= tag.id
+        %td= tag.title
+        %td= link_to 'Delete Tag', tag_path(tag.id), class: 'btn btn-danger', |
+            method: :delete                                                  |
+= paginate @tags

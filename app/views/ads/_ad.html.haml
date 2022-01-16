@@ -7,8 +7,8 @@
     %p.card-text= "Status: #{ad.state}"
   =render ad.tags
   %p
-    - if ad.images_get.any?
-      - ad.images_get.each do |file|
+    - if ad.images.any?
+      - ad.images.each do |file|
         = image_tag file, size: '150x150'
   %p Posted at #{ad.created_at} . 
 %p     

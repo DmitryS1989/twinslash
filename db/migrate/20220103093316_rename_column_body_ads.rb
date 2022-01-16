@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class
 class RenameColumnBodyAds < ActiveRecord::Migration[6.1]
   def change
     change_table :ads do |t|

@@ -2,6 +2,7 @@
 
 # class
 class User < ApplicationRecord
+  include AASM
   enum role: { user: 0, admin_user: 1 }, _suffix: :role
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable, :trackable, :omniauthable
@@ -20,5 +21,18 @@ class User < ApplicationRecord
                           password: Devise.friendly_token[0, 20],
                           confirmed_at: Time.zone.now)
     user
+  end
+
+  aasm column: :role, enum: true do
+    state :user, initial: true
+    state :admin_user
+
+    event :make_administrator do
+      transitions from: :user, to: :admin_user
+    end
+
+    event :make_user do
+      transitions from: :admin_user, to: :user
+    end
   end
 end

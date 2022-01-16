@@ -46,19 +46,17 @@ class Ad < ApplicationRecord
     end
   end
 
+  scope :state_is_moderating, -> { where(state: :moderating) }
+
   scope :newest_first, -> { order(created_at: :desc) }
 
   scope :state_is_published, -> { where(state: :published) }
 
-  scope :includes_all, -> { includes([:user], [:ad_tags], [:tags]) }
+  scope :includes_all, -> { includes([:user], [:ad_tags], [:tags], [images_attachments: :blob]) }
 
   scope :all_by_tags, lambda { |tags|
     ads = Ad.includes_all
     ads = ads.joins(:tags).where(tags: tags) if tags
     ads.state_is_published.newest_first
   }
-
-  def images_get
-    images.includes([:blob])
-  end
 end

@@ -1,4 +1,4 @@
-.card{:style => "width: 50rem;"}
+.card
 .card-body
   %h5.card-title= "#{ad.user.name}"
   %p.card-text= "Title: #{ad.title}"
@@ -6,8 +6,8 @@
   %p.card-text= "Status: #{ad.state}"
   =render ad.tags
   %p
-    - if ad.images_get.any?
-      - ad.images_get.each do |file|
+    - if ad.images.any?
+      - ad.images.each do |file|
         = image_tag file.variant(resize: "100x100",format: :jpeg)
   %p Posted at #{ad.created_at} .
   -# %p.card-text

@@ -63,6 +63,18 @@ class AdsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def approve
+    @ad = Ad.find(params[:id])
+    @ad.approve!
+    redirect_back fallback_location: root_path
+  end
+
+  def reject
+    @ad = Ad.find(params[:id])
+    @ad.reject!
+    redirect_back fallback_location: root_path
+  end
+
   def correct
     ad = Ad.find(params[:id])
     ad.correct!
