@@ -23,6 +23,10 @@ class User < ApplicationRecord
     user
   end
 
+  def author?(ad)
+    ad.user == self
+  end
+
   aasm column: :role, enum: true do
     state :user, initial: true
     state :admin_user

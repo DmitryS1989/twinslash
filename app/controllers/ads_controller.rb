@@ -2,8 +2,7 @@
 
 # class
 class AdsController < ApplicationController
-  before_action :authenticate_user!, except: %i[show index]
-  before_action :correct_user, only: %i[destroy edit update]
+  before_action :authenticate_user!, except: %i[index]
   before_action :fetch_tags, only: %i[new edit]
   before_action :check_state, only: %i[update edit]
 
@@ -12,16 +11,13 @@ class AdsController < ApplicationController
     @ads = Ad.all_by_tags(@tags).page params[:page]
   end
 
-  def show
-    @ads = Ad.all
-  end
-
   def new
     @ad = Ad.new
   end
 
   def create
     @ad = current_user.ads.build ad_params
+    authorize @ad
     if @ad.save
       redirect_to my_ads_path
     else
@@ -36,6 +32,7 @@ class AdsController < ApplicationController
 
   def update
     @ad = Ad.find(params[:id])
+    authorize @ad
     if @ad.update(ad_params)
       flash[:success] = 'Ad updated'
       redirect_to my_ads_path
@@ -53,36 +50,42 @@ class AdsController < ApplicationController
 
   def send_to_moderate
     @ad = Ad.find(params[:id])
+    authorize @ad
     @ad.moderating!
     redirect_back fallback_location: root_path
   end
 
   def refresh
     ad = Ad.find(params[:id])
+    authorize @ad
     ad.refresh!
     redirect_back fallback_location: root_path
   end
 
   def approve
     @ad = Ad.find(params[:id])
+    authorize @ad
     @ad.approve!
     redirect_back fallback_location: root_path
   end
 
   def reject
     @ad = Ad.find(params[:id])
+    authorize @ad
     @ad.reject!
     redirect_back fallback_location: root_path
   end
 
   def correct
     ad = Ad.find(params[:id])
+    authorize @ad
     ad.correct!
     redirect_back fallback_location: root_path
   end
 
   def destroy
     @ad = Ad.find(params[:id])
+    authorize @ad
     @ad.destroy
     flash[:success] = 'Ad deleted'
     redirect_to my_ads_path
@@ -90,21 +93,15 @@ class AdsController < ApplicationController
 
   private
 
-  def check_state
-    @ad = Ad.find(params[:id])
-    return if %w[draft archival].include?(@ad.state)
-
-    redirect_back fallback_location:
-               root_path
-  end
-
   def ad_params
     params.require(:ad).permit(:title, :state, :body_ad, images: [], tag_ids: [])
   end
 
-  def correct_user
-    @ad = current_user.ads.find_by(id: params[:id])
-    redirect_to root_url if @ad.nil?
+  def check_state
+    @ad = Ad.find(params[:id])
+    return if %w[draft archival].include?(@ad.state)
+
+    redirect_back fallback_location: root_path
   end
 
   def fetch_tags
